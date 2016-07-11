@@ -3574,6 +3574,14 @@
     "editstandinginstructionlist":"Edit Standing Instruction",
     "new_client_saving_application":"New Saving Application",
 
+    "#------------------": "------------",
+
+    "#Notification-Module": "....",
+
+    "#Headings": "..",
+
+    "label.heading.notifications":"Notifications",
+
     "#-----------------------------":"--------------------",
 
     "endDate":"End date",

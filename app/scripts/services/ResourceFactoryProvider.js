@@ -48,6 +48,9 @@
                         getAllClientDocuments: {method: 'GET', params: {}, isArray: true},
                         update: { method: 'PUT'}
                     }),
+                    notificationsResource: defineResource(apiVer + "/notifications", {}, {
+                    getAllNotifications : {method : 'GET'}
+                    }),
                     clientChargesResource: defineResource(apiVer + "/clients/:clientId/charges/:resourceType", {clientId: '@clientId', resourceType: '@resourceType'}, {
                         getCharges: {method: 'GET'},
                         waive:{method:'POST' , params:{command : 'waive'}}
