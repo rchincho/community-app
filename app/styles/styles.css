@@ -12411,3 +12411,47 @@ body {
 .chosen-container .chosen-results li.highlighted {
   background: #5bc0de !important;
 }
+
+/* @import this file */
+/* line 3, ../styles-dev/main/components/_notifications.scss */
+.notification-icon {
+  position: relative;
+}
+
+/* line 7, ../styles-dev/main/components/_notifications.scss */
+.notification-container {
+  border: 1px solid #ccc;
+  width: 250px;
+  height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: #fff;
+  position: absolute;
+  z-index: 100;
+  right: 0;
+  display: none;
+  top: 51px;
+  -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0px 2px rgba(0, 0, 0, 0.2);
+  border-top: none;
+}
+/* line 21, ../styles-dev/main/components/_notifications.scss */
+.notification-container.open {
+  display: block;
+}
+/* line 32, ../styles-dev/main/components/_notifications.scss */
+.notification-container ul.notification-list {
+  margin: 0;
+  padding: 0;
+}
+/* line 36, ../styles-dev/main/components/_notifications.scss */
+.notification-container ul.notification-list li {
+  list-style: none;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 8px 5px;
+}
+/* line 41, ../styles-dev/main/components/_notifications.scss */
+.notification-container ul.notification-list li h4 {
+  font-size: 14px;
+}
