@@ -65,11 +65,13 @@
                     <div class="notification-container" ng-class="{'open':isNotificationTrayOpen}">
                         <ul class="notification-list" ng-repeat="notification in notifications">
                             <li ng-click="navigateToAction(notification)">
-                                <h4>{{ notification.notificationContent }}</h4>
-                                {{ notification.createdAt }}
+                                <h4>{{ notification.content }}</h4>
+                                <span>{{ notification.createdAt }}</span>
                             </li>
                         </ul>
-
+                        <div class="notification-list-link">
+                            <a href="#/notifications">Show all notifications</a>
+                        </div>
                     </div>
                 </li>
                 <li class="" uib-dropdown id="user-menu">

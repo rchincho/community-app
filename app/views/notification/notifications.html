@@ -11,7 +11,7 @@
                 <tbody>
                 <tr class="pointer-main" dir-paginate="notification in notifications | itemsPerPage: notificationsPerPage"
                     total-items="totalNotifications" ng-click="navigateToAction(notification)">
-                    <td class="pointer">{{ notification.notificationContent }}</td>
+                    <td class="pointer">{{ notification.content }}</td>
                     <td>{{ notification.createdAt }}</td>
                 </tr>
                 </tbody>
