@@ -12417,8 +12417,24 @@ body {
 .notification-icon {
   position: relative;
 }
+/* line 6, ../styles-dev/main/components/_notifications.scss */
+.notification-icon .numberCircle {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  padding: 3px;
+  background: #db4437;
+  border: 2px solid #fff;
+  text-align: center;
+  color: #fff;
+  font: 10px Arial, sans-serif;
+  position: absolute;
+  top: 3px;
+  left: 20px;
+  font-weight: bold;
+}
 
-/* line 7, ../styles-dev/main/components/_notifications.scss */
+/* line 24, ../styles-dev/main/components/_notifications.scss */
 .notification-container {
   border: 1px solid #ccc;
   width: 250px;
@@ -12436,30 +12452,30 @@ body {
   box-shadow: 0 0px 2px rgba(0, 0, 0, 0.2);
   border-top: none;
 }
-/* line 21, ../styles-dev/main/components/_notifications.scss */
+/* line 38, ../styles-dev/main/components/_notifications.scss */
 .notification-container.open {
   display: block;
 }
-/* line 32, ../styles-dev/main/components/_notifications.scss */
+/* line 49, ../styles-dev/main/components/_notifications.scss */
 .notification-container ul.notification-list {
   margin: 0;
   padding: 0;
 }
-/* line 36, ../styles-dev/main/components/_notifications.scss */
+/* line 53, ../styles-dev/main/components/_notifications.scss */
 .notification-container ul.notification-list li {
   list-style: none;
   border-bottom: 1px solid #e0e0e0;
   padding: 8px 5px;
 }
-/* line 41, ../styles-dev/main/components/_notifications.scss */
+/* line 58, ../styles-dev/main/components/_notifications.scss */
 .notification-container ul.notification-list li h4 {
   font-size: 14px;
 }
-/* line 45, ../styles-dev/main/components/_notifications.scss */
+/* line 62, ../styles-dev/main/components/_notifications.scss */
 .notification-container ul.notification-list li span {
   font-size: 12px;
 }
-/* line 51, ../styles-dev/main/components/_notifications.scss */
+/* line 68, ../styles-dev/main/components/_notifications.scss */
 .notification-container .notification-list-link {
   font-size: 12px;
   text-align: center;

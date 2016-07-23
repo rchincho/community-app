@@ -3,7 +3,24 @@
 .notification-icon{
   position:relative;
 
+  .numberCircle {
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    padding: 3px;
+    background: #db4437;
+    border: 2px solid #fff;
+    text-align: center;
+    color: #fff;
+    font: 10px Arial, sans-serif;
+    position: absolute;
+    top: 3px;
+    left: 20px;
+    font-weight: bold;
+  }
+
 }
+
 .notification-container{
   border:1px solid #ccc;
   width:250px;

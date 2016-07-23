@@ -60,8 +60,11 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right" id="main-menu-right">
-                <li class="notification-icon" ng-controller="NotificationsController">
-                    <a href ng-click="isNotificationTrayOpen = !isNotificationTrayOpen; fetchItemsInTray()"> <span class="fa fa-bell"></span></a>
+                <li class="notification-icon" ng-controller="NotificationsController" ng-init="countFromLastResponse()">
+                    <a href ng-click="isNotificationTrayOpen = !isNotificationTrayOpen; fetchItemsInNotificationTray()">
+                        <span class="fa fa-bell"></span>
+                    </a>
+                    <div class="numberCircle" ng-hide="numberOfUnreadNotifications == 0">{{ numberOfUnreadNotifications }}</div>
                     <div class="notification-container" ng-class="{'open':isNotificationTrayOpen}">
                         <ul class="notification-list" ng-repeat="notification in notifications">
                             <li ng-click="navigateToAction(notification)">
