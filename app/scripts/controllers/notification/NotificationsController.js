@@ -14,7 +14,6 @@
             scope.numberOfUnreadNotifications = 0;
             scope.counter = 0;
             scope.initNotificationTray = function() {
-                scope.numberOfUnreadNotifications = 0;
                 var readNotifications = localStorageService.getFromLocalStorage("notifications");
                 if (readNotifications == null) {
                     scope.initNotificationsPage();
@@ -22,6 +21,11 @@
                 } else {
                     scope.notifications = readNotifications;
                     console.log("Fetching notifications from the local database.");
+                }
+
+                if (scope.numberOfUnreadNotifications > 0 ) {
+                    resourceFactory.notificationsResource.update();
+                    scope.numberOfUnreadNotifications = 0;
                 }
             };
             scope.initNotificationsPage = function () {
@@ -47,23 +51,30 @@
                     offset: 0,
                     limit: scope.notificationsPerPage || 10
                 }, function(data) {
-                    scope.numberOfUnreadNotifications += data.pageItems.length;
+                    scope.numberOfUnreadNotifications = data.pageItems.length;
                     console.log("Number of unread notifications are : " + scope.numberOfUnreadNotifications);
                     scope.counter = 0;
                     var readNotifications = localStorageService.getFromLocalStorage("notifications");
                     if (readNotifications == null) {
                         scope.initNotificationsPage();
                     } else {
+                        for (j = 0; j < data.pageItems.length; j++) {
+                            for (i = 0; i < readNotifications.length; i++) {
+                                if (JSON.stringify(readNotifications[i]) === JSON.stringify(data.pageItems[j])) {
+                                    readNotifications.splice(i, 1);
+                                }
+                            }
+                        }
                         scope.notifications = data.pageItems.concat
                         (readNotifications
                             .slice(0, Math.abs(readNotifications.length - data.pageItems.length + 1)));
                         console.log("There are local storage notifications. Merging it with the new ones :)")
                     }
                     localStorageService.addToLocalStorage("notifications", JSON.stringify(scope.notifications));
-                    resourceFactory.notificationsResource.update();
                 });
-            };
-            scope.navigateToAction = function(notification){
+             };
+            scope.fetchUnreadNotifications();
+            scope.navigateToAction = function(notification) {
                 if(!notification.objectType || typeof(notification.objectType) !=='string'){
                     console.error('no object type found');
                     return;
@@ -94,6 +105,7 @@
                     scope.fetchUnreadNotifications();
                 }
             });
+            rootScope.$broadcast
         }
     });
     mifosX.ng.application.controller('NotificationsController', ['$scope', '$rootScope', 'ResourceFactory', '$location',

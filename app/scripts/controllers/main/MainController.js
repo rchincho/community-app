@@ -163,6 +163,7 @@
                 scope.currentSession = sessionManager.clear();
                 scope.resetPassword = false;
                 location.path('/').replace();
+                localStorageService.removeFromLocalStorage("notifications"); //remove all the notifications of the current user
             };
 
             scope.langs = mifosX.models.Langs;

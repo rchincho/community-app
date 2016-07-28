@@ -60,7 +60,7 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right" id="main-menu-right">
-                <li class="notification-icon" ng-controller="NotificationsController" ng-init="countFromLastResponse()">
+                <li class="notification-icon" ng-controller="NotificationsController" ng-init="fetchUnreadNotifications()">
                     <a href ng-click="isNotificationTrayOpen = !isNotificationTrayOpen; fetchItemsInNotificationTray()">
                         <span class="fa fa-bell"></span>
                     </a>
