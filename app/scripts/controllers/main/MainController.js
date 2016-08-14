@@ -2,11 +2,18 @@
     mifosX.controllers = _.extend(module, {
         MainController: function (scope, location, sessionManager, translate, $rootScope, localStorageService, keyboardManager, $idle, tmhDynamicLocale, 
                   uiConfigService, $http) {
-
             $http.get('release.json').success(function(data) {
                 scope.version = data.version;
                 scope.releasedate = data.releasedate;
             } );
+
+            scope.$on('scrollbar.show', function(){
+                  console.log('Scrollbar show');
+                });
+            scope.$on('scrollbar.hide', function(){
+                  console.log('Scrollbar hide');
+                });
+
             uiConfigService.init();
             //hides loader
             scope.domReady = true;
