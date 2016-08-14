@@ -9,7 +9,7 @@
             };
             scope.notifications = [];
             scope.notificationsPerPage = 15;
-            scope.isNotificationTrayOpen = false;
+            scope.notificationsItmesInATray = 5;
             scope.isNotificationIconRed = false;
             scope.numberOfUnreadNotifications = 0;
             scope.counter = 0;
@@ -95,9 +95,7 @@
                 timeout(scope.countFromLastResponse, 1000);
             };
             scope.fetchItemsInNotificationTray = function() {
-              if (scope.isNotificationTrayOpen) {
                   scope.initNotificationTray();
-              } 
             };
             scope.$on('eventFired', function(event, data) {
                 scope.counter = 0;
@@ -105,7 +103,6 @@
                     scope.fetchUnreadNotifications();
                 }
             });
-            rootScope.$broadcast
         }
     });
     mifosX.ng.application.controller('NotificationsController', ['$scope', '$rootScope', 'ResourceFactory', '$location',
