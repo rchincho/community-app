@@ -24,10 +24,8 @@
                 var readNotifications = localStorageService.getFromLocalStorage("notifications");
                 if (readNotifications == null) {
                     scope.initNotificationsPage();
-                    console.log("Fetching Notifications from the server");
                 } else {
                     scope.notifications = readNotifications;
-                    console.log("Fetching notifications from the local database.");
                 }
 
                 if (scope.numberOfUnreadNotifications > 0 ) {
@@ -59,7 +57,6 @@
                     limit: scope.notificationsPerPage || 10
                 }, function(data) {
                     scope.numberOfUnreadNotifications = data.pageItems.length;
-                    console.log("Number of unread notifications are : " + scope.numberOfUnreadNotifications);
                     scope.counter = 0;
                     var readNotifications = localStorageService.getFromLocalStorage("notifications");
                     if (readNotifications == null) {
@@ -75,7 +72,6 @@
                         scope.notifications = data.pageItems.concat
                         (readNotifications
                             .slice(0, Math.abs(readNotifications.length - data.pageItems.length + 1)));
-                        console.log("There are local storage notifications. Merging it with the new ones :)")
                     }
                     localStorageService.addToLocalStorage("notifications", JSON.stringify(scope.notifications));
                 });
@@ -86,7 +82,6 @@
                     return;
                 }
                 if(!objTypeUrlMap[notification.objectType] ){
-                    console.error('objectType not found in map. Invalid object type');
                     return;
                 }
                 location.path(objTypeUrlMap[notification.objectType] + notification.objectId);
