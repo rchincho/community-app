@@ -2,10 +2,17 @@
     mifosX.controllers = _.extend(module, {
         NotificationsController: function (scope, rootScope, resourceFactory, location, timeout,
                                            notificationResponseHeaderFactory, localStorageService) {
-
             var objTypeUrlMap = {
                 'client' : '/viewclient/',
-                'group' : '/viewgroup/'
+                'group' : '/viewgroup/',
+                'loan' : '/viewloanaccount/',
+                'shareAccount' : '/viewshareaccount/',
+                'fixedDeposit' : 'viewfixeddepositaccount/',
+                'recurringDepositAccount': '/viewrecurringdepositaccount/',
+                'shareProduct': '/viewshareproduct/',
+                'savingsAccount' : '/viewsavingaccount/',
+                'center' : '/viewcenter/',
+                'loanProduct' : '/viewloanproduct/'
             };
             scope.notifications = [];
             scope.notificationsPerPage = 15;
@@ -73,26 +80,25 @@
                     localStorageService.addToLocalStorage("notifications", JSON.stringify(scope.notifications));
                 });
              };
-            scope.fetchUnreadNotifications();
             scope.navigateToAction = function(notification) {
                 if(!notification.objectType || typeof(notification.objectType) !=='string'){
                     console.error('no object type found');
                     return;
                 }
-                notification.objectType = notification.objectType.toLowerCase();
                 if(!objTypeUrlMap[notification.objectType] ){
                     console.error('objectType not found in map. Invalid object type');
                     return;
                 }
-                location.path(objTypeUrlMap[notification.objectType.toLowerCase()] + notification.objectId);
+                location.path(objTypeUrlMap[notification.objectType] + notification.objectId);
             };
             scope.countFromLastResponse = function() {
                 scope.counter++;
-                if (scope.counter === 60) {
+                if (scope.counter == 60) {
                     scope.counter = 0;
                     scope.fetchUnreadNotifications();
                 }
-                timeout(scope.countFromLastResponse, 1000);
+                console.log(scope.counter);
+                scope.timer = timeout(scope.countFromLastResponse, 1000);
             };
             scope.fetchItemsInNotificationTray = function() {
                   scope.initNotificationTray();
@@ -102,6 +108,12 @@
                 if (data.notificationStatus === "true") {
                     scope.fetchUnreadNotifications();
                 }
+            });
+            scope.$on("UserAuthenticationSuccessEvent", function (event, data) {
+                timeout.cancel(scope.timer);
+                localStorageService.removeFromLocalStorage("notifications"); //remove all local notifications
+                timeout(scope.countFromLastResponse(), 1000);
+                scope.fetchUnreadNotifications();
             });
         }
     });
